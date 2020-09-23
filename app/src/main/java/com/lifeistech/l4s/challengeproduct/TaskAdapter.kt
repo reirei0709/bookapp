@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import io.realm.OrderedRealmCollection
 import io.realm.RealmRecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.activity_main.view.imageView
+import kotlinx.android.synthetic.main.item_data_cell.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -27,11 +29,18 @@ class TaskAdapter(
         val task: Task = taskList?.get(position) ?: return
 
         holder.imageView.setImageResource(task.imageId)
-        //holder.contentTextView.text = task.content
-       // holder.dateTextView.text =
-            SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.JAPANESE).format(task.createdAt)
+        //holder.titletextView.text = task.title
+       // holder.pricetextView.text =task.price
+        //holder.timetextView.text = task.createdAt
+
+            //SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.JAPANESE).format(task.createdAt)
 
     }
+
+    //fun addAll(items:List<ItemData>){
+      //  this.taskList?.addAll(items)
+      //  notifyDataSetChanged()
+    //}
 
     //override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): TaskViewHolder {
         //val v = LayoutInflater.from(context).inflate(R.layout.list_item, viewGroup, false)
@@ -40,8 +49,9 @@ class TaskAdapter(
 
     class TaskViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = view.imageView
-        //val contentTextView: TextView = view.contentTextView
-        //val dateTextView: TextView = view.dateTextView
+        val title: TextView = view.titleText
+        val price: TextView = view.priceText
+        val time:TextView = view.timetextView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
