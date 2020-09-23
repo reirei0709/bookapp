@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CollectionActivity"></activity>
+        <activity android:name="com.lifeistech.l4s8.challengeproduct.splash_activity"></activity>
+        <activity android:name=".CollectionActivity" />
         <activity android:name="com.lifeistech.l4s8.challengeproduct.colectionActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
