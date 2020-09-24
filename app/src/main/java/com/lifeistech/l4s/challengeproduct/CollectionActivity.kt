@@ -20,9 +20,15 @@ class CollectionActivity : AppCompatActivity() {
         Realm.getDefaultInstance()
     }
 
+    fun readAll(): RealmResults<Task> {
+        return realm.where(Task::class.java).findAll().sort("createdAt", Sort.ASCENDING)
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         val taskList = readAll()
 
@@ -41,7 +47,6 @@ class CollectionActivity : AppCompatActivity() {
                     delete(item.id)
                 }
             }, true)
-
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -69,9 +74,9 @@ class CollectionActivity : AppCompatActivity() {
         }
     }
 
-    fun readAll(): RealmResults<Task> {
-        return realm.where(Task::class.java).findAll().sort("createdAt", Sort.ASCENDING)
-    }
+    //fun readAll(): RealmResults<Task> {
+        //return realm.where(Task::class.java).findAll().sort("createdAt", Sort.ASCENDING)
+    //}
 
     fun update(id: String, content: String) {
         realm.executeTransaction {
