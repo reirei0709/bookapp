@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import io.realm.OrderedRealmCollection
 import io.realm.RealmRecyclerViewAdapter
@@ -30,12 +31,16 @@ class TaskAdapter(
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task: Task = taskList?.get(position) ?: return
 
-        //holder.container.setOnClickListener{
-            //listener.onItemClick(task)
-        //}
+        holder.container.setOnClickListener{
+            listener.onItemClick(task)
+        }
 
-        holder.imageView.setImageResource(task.imageId)
-        //holder.contentTextView.text = task.content
+        //holder.imageView.setImageResource(task.imageId)
+        holder.titleTextView.text = task.title
+        holder.authorTextView.text = task.author
+        holder.priceTextView.text = task.price
+        holder.timeTextView.text = task.createdAt.toString()
+
         //holder.dateTextView.text =
             //SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.JAPANESE).format(task.createdAt)
 
@@ -47,9 +52,12 @@ class TaskAdapter(
     }
 
     class TaskViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val imageView: ImageView = view.imageView
-        //val contentTextView: TextView = view.contentTextView
-        //val dateTextView: TextView = view.dateTextView
+        //val imageView: ImageView = view.imageView
+        val container:ConstraintLayout = view.container
+        val titleTextView: TextView = view.titletextView
+        val authorTextView: TextView = view.authortextView
+        val priceTextView:TextView = view.pricetextView
+        val timeTextView:TextView = view.timetextView
     }
     interface OnItemClickListener {
         fun onItemClick(item: Task)

@@ -1,17 +1,15 @@
 package com.lifeistech.l4s.challengeproduct
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
+import android.util.Log
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
-import io.realm.OrderedRealmCollection
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import io.realm.Realm
 import io.realm.RealmResults
 import io.realm.Sort
 import kotlinx.android.synthetic.main.activity_collection.*
-import java.net.URI.create
-import java.nio.file.Files.delete
+import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 class CollectionActivity : AppCompatActivity() {
@@ -27,7 +25,7 @@ class CollectionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_collection)
 
 
         val taskList = readAll()
@@ -48,9 +46,12 @@ class CollectionActivity : AppCompatActivity() {
                 }
             }, true)
 
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = adapter
+        if(recyclerView == null) Log.d("recyclerView", "null")
+        else{
+            recyclerView.setHasFixedSize(true)
+            recyclerView.layoutManager = GridLayoutManager(this, 3)
+            recyclerView.adapter = adapter
+        }
 
 
     }
@@ -62,14 +63,16 @@ class CollectionActivity : AppCompatActivity() {
 
     fun createDummyData() {
         for (i in 0..10) {
-            create(R.drawable.ic_launcher_background, "やること $i")
+            create("Kotlin","author","price","content")
         }
     }
 
-    fun create(imageId: Int, content: String) {
+    fun create(title:String,author:String,price:String,content: String) {
         realm.executeTransaction {
             val task = it.createObject(Task::class.java, UUID.randomUUID().toString())
-            task.imageId = imageId
+            task.title = title
+            task.author = author
+            task.price = price
             task.content = content
         }
     }
@@ -78,13 +81,16 @@ class CollectionActivity : AppCompatActivity() {
         //return realm.where(Task::class.java).findAll().sort("createdAt", Sort.ASCENDING)
     //}
 
-    fun update(id: String, content: String) {
-        realm.executeTransaction {
-            val task = realm.where(Task::class.java).equalTo("id", id).findFirst()
-                ?: return@executeTransaction
-            task.content = content
-        }
-    }
+//    fun update( title:String,author:String,price:String,content: String) {
+//        realm.executeTransaction {
+//            val task = realm.where(Task::class.java).equalTo("id", "0").findFirst()
+//                ?: return@executeTransaction
+//            task.title = title
+//            task.author = author
+//            task.price = price
+//            task.content = content
+//        }
+//    }
 
     fun update(task: Task, content: String) {
         realm.executeTransaction {
