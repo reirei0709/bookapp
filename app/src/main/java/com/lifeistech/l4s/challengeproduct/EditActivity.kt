@@ -8,25 +8,29 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Parcel
-import android.os.Parcelable
 import android.provider.MediaStore
 import android.util.Log
+import com.lifeistech.l4s.challengeproduct.R
 import io.realm.Realm
+import kotlinx.android.synthetic.main.activity_edit.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.addButton
+import kotlinx.android.synthetic.main.activity_main.authorText
+import kotlinx.android.synthetic.main.activity_main.contentText
+import kotlinx.android.synthetic.main.activity_main.imageView
+import kotlinx.android.synthetic.main.activity_main.priceText
+import kotlinx.android.synthetic.main.activity_main.titleText
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class EditActivity : AppCompatActivity() {
     val realm = Realm.getDefaultInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_edit)
 
+        changeButton.setOnClickListener {
 
-
-        addButton.setOnClickListener {
-
-            Log.d("addButton","tap")
+            Log.d("changeButton","tap")
 
 
             val title = titleText.text.toString()
@@ -35,31 +39,22 @@ class MainActivity : AppCompatActivity() {
             val content: String = contentText.text.toString()
             save(title, author, price, content)
 
-            Log.d("addButton","save")
+            Log.d("changeButton","save")
 
-//            val DetailPage = Intent(this, DetailActivity::class.java)
-//
-//            DetailPage.putExtra("title",title)
-//            DetailPage.putExtra("author",author)
-//            DetailPage.putExtra("price",price)
-//            DetailPage.putExtra("content",content)
-//
-//            Log.d("putExtra","key")
+            val DetailPage = Intent(this, DetailActivity::class.java)
 
-            finish()
+            DetailPage.putExtra("title",title)
+            DetailPage.putExtra("author",author)
+            DetailPage.putExtra("price",price)
+            DetailPage.putExtra("content",title)
+
+
+            startActivity(DetailPage)
         }
 
         imageView.setOnClickListener {// your code here
             showGallery()
         }
-
-        //if (Task != null) {
-        // titleText.setText(Task.title)
-        // authorText.set
-        //detail.setText(Task.detail)
-
-
-        // }
 
     }
 
@@ -86,7 +81,7 @@ class MainActivity : AppCompatActivity() {
 
         realm.executeTransaction {
 
-            val newMemo: Task = it.createObject(Task::class.java,UUID.randomUUID().toString())
+            val newMemo: Task = it.createObject(Task::class.java, UUID.randomUUID().toString())
             newMemo.title = title
             newMemo.author = author
             newMemo.price = price
@@ -164,6 +159,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
 }
-

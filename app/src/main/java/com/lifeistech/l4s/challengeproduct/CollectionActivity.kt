@@ -1,10 +1,13 @@
 package com.lifeistech.l4s.challengeproduct
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import io.realm.Realm
 import io.realm.RealmResults
 import io.realm.Sort
@@ -35,14 +38,29 @@ class CollectionActivity : AppCompatActivity() {
             createDummyData()
         }
 
-        //val adapter = TaskAdapter(this, taskList, true)
+        val  DetailPage = Intent(this,DetailActivity::class.java)
 
         val adapter =
             TaskAdapter(this, taskList, object : TaskAdapter.OnItemClickListener {
+
+
                 override fun onItemClick(item: Task) {
                     // クリック時の処理
-                    Toast.makeText(applicationContext, item.content + "を削除しました", Toast.LENGTH_SHORT).show()
-                    delete(item.id)
+
+                    Log.d("data",item.title)
+                    Log.d("data",item.id)
+
+                    DetailPage.putExtra("id",item.id)
+
+
+
+
+                    startActivity(DetailPage)
+
+
+                    //削除
+                    //Toast.makeText(applicationContext, item.content + "を削除しました", Toast.LENGTH_SHORT).show()
+                    //delete(item.id)
                 }
             }, true)
 
@@ -53,8 +71,23 @@ class CollectionActivity : AppCompatActivity() {
             recyclerView.adapter = adapter
         }
 
+        val fab: View = findViewById(R.id.fab)
+        fab.setOnClickListener { view ->
+//            Snackbar.make(view, "Fabを押しました！", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show()
+
+            val MainPage = Intent(this, MainActivity::class.java)
+
+            Log.d("addButton","Intent")
+
+
+            startActivity(MainPage)
+        }
+
 
     }
+
+
 
     override fun onDestroy() {
         super.onDestroy()
