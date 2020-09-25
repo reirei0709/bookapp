@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import io.realm.Realm
@@ -30,12 +31,17 @@ class CollectionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_collection)
 
-
         val taskList = readAll()
 
-        // タスクリストが空だったときにダミーデータを生成する
+
+
+
+
+         //タスクリストが空だったときに"あなたの読んだ本を…"を見えるように
         if (taskList.isEmpty()) {
-            createDummyData()
+            //createDummyData()
+            firstTextView.isVisible = true
+
         }
 
         val  DetailPage = Intent(this,DetailActivity::class.java)
@@ -94,11 +100,11 @@ class CollectionActivity : AppCompatActivity() {
         realm.close()
     }
 
-    fun createDummyData() {
-        for (i in 0..10) {
-            create("Kotlin","author","price","content")
-        }
-    }
+//    fun createDummyData() {
+//        for (i in 0..10) {
+//            create("Kotlin","author","price","content")
+//        }
+//    }
 
     fun create(title:String,author:String,price:String,content: String) {
         realm.executeTransaction {
@@ -110,9 +116,7 @@ class CollectionActivity : AppCompatActivity() {
         }
     }
 
-    //fun readAll(): RealmResults<Task> {
-        //return realm.where(Task::class.java).findAll().sort("createdAt", Sort.ASCENDING)
-    //}
+
 
 //    fun update( title:String,author:String,price:String,content: String) {
 //        realm.executeTransaction {
@@ -150,5 +154,7 @@ class CollectionActivity : AppCompatActivity() {
             realm.deleteAll()
         }
     }
+
+
 
 }

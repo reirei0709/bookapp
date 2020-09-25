@@ -58,7 +58,7 @@ class DetailActivity : AppCompatActivity() {
         deleteButton.setOnClickListener {
             AlertDialog.Builder(this)
                 .setTitle("本の削除")
-                .setMessage(title.toString() + "を削除しますか")
+                .setMessage(realmData?.title.toString() + "を削除しますか")
                 .setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
                     // OK button pressed
 
@@ -87,10 +87,7 @@ class DetailActivity : AppCompatActivity() {
 
         return target
 
-        // トランザクションして更新をかける
-//        realm.executeTransaction {
-//            target?.title = newTitle
-//        }
+
     }
 
     fun delete(id: String) {

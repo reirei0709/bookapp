@@ -16,8 +16,11 @@ import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity, Parcelable {
+
+
     val realm = Realm.getDefaultInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -49,17 +52,12 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-        imageView.setOnClickListener {// your code here
+        ImageView.setOnClickListener{
+            Log.d("imageView","tap")
             showGallery()
         }
 
-        //if (Task != null) {
-        // titleText.setText(Task.title)
-        // authorText.set
-        //detail.setText(Task.detail)
 
-
-        // }
 
     }
 
@@ -99,10 +97,23 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
+
+
+
     private var m_uri: Uri? = null
     private val REQUEST_CHOOSER = 1000
 
-    //constructor()
+    private constructor(parcel: Parcel) : this() {
+        m_uri = parcel.readParcelable(Uri::class.java.classLoader)
+    }
+
+    constructor()
+
+
+    fun onClick(dialog: android.content.DialogInterface?, which: kotlin.Int) {
+        TODO("Not yet implemented")
+    }
 
 
 
@@ -160,7 +171,24 @@ class MainActivity : AppCompatActivity() {
             )
 
             // 画像を設定
-            imageView.setImageURI(resultUri)
+            ImageView.setImageURI(resultUri)
+        }
+    }
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeParcelable(m_uri, flags)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<MainActivity> {
+        override fun createFromParcel(parcel: Parcel): MainActivity {
+            return MainActivity(parcel)
+        }
+
+        override fun newArray(size: Int): Array<MainActivity?> {
+            return arrayOfNulls(size)
         }
     }
 
