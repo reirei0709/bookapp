@@ -8,6 +8,8 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcel
+import android.os.Parcelable
 import android.provider.MediaStore
 import android.util.Log
 import io.realm.Realm
@@ -20,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_main.priceText
 import kotlinx.android.synthetic.main.activity_main.titleText
 import java.util.*
 
-class EditActivity : AppCompatActivity() {
+class EditActivity : AppCompatActivity,Parcelable {
     val realm = Realm.getDefaultInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,7 +97,18 @@ class EditActivity : AppCompatActivity() {
     private var m_uri: Uri? = null
     private val REQUEST_CHOOSER = 1000
 
-    //constructor()
+
+    private constructor(parcel: Parcel) : this() {
+        m_uri = parcel.readParcelable(Uri::class.java.classLoader)
+    }
+
+    constructor()
+
+
+    fun onClick(dialog: android.content.DialogInterface?, which: kotlin.Int) {
+        TODO("Not yet implemented")
+    }
+
 
 
 
@@ -154,6 +167,24 @@ class EditActivity : AppCompatActivity() {
 
             // 画像を設定
             ImageView.setImageURI(resultUri)
+        }
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeParcelable(m_uri, flags)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<EditActivity> {
+        override fun createFromParcel(parcel: Parcel): EditActivity? {
+            return EditActivity(parcel)
+        }
+
+        override fun newArray(size: Int): Array<EditActivity?> {
+            return arrayOfNulls(size)
         }
     }
 
