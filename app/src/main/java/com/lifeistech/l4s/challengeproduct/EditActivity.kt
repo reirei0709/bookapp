@@ -13,6 +13,7 @@ import android.os.Parcelable
 import android.provider.MediaStore
 import android.util.Log
 import io.realm.Realm
+import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.activity_edit.*
 import kotlinx.android.synthetic.main.activity_edit.ImageView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -27,6 +28,14 @@ class EditActivity : AppCompatActivity,Parcelable {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
+
+        val realmData = getRealmData()
+
+
+
+        Log.d("getkey", "Intent")
+
+
 
         changeButton.setOnClickListener {
 
@@ -92,6 +101,20 @@ class EditActivity : AppCompatActivity,Parcelable {
 
 
     }
+
+
+    private fun getRealmData(): Task? {
+        // プライマリーキーをもとに該当のデータを取得
+        val id = intent.getStringExtra("id")
+        val target = realm.where(Task::class.java)
+            .equalTo("id", id)
+            .findFirst()
+
+        return target
+
+
+    }
+
 
 
     private var m_uri: Uri? = null

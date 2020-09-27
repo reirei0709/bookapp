@@ -19,12 +19,24 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        val realmData = getRealmData()
+        //setSupportActionBar(toolbar)
 
-//        val  title = intent.getStringExtra("title")
-//        val  author = intent.getStringExtra("author")
-//        val  price = intent.getStringExtra("price")
-//        val  content = intent.getStringExtra("content")
+        //アイコンの設置
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
+
+        //リスナー定義
+        toolbar.setNavigationOnClickListener {
+
+            val collectionPage = Intent(this, CollectionActivity::class.java)
+
+            startActivity(collectionPage)
+
+        }
+
+
+
+
+        val realmData = getRealmData()
 
         Log.d("getkey", "Intent")
 
@@ -36,15 +48,7 @@ class DetailActivity : AppCompatActivity() {
 
         Log.d("setText", "setText")
 
-        backButton.setOnClickListener {
 
-            val collectionPage = Intent(this, CollectionActivity::class.java)
-
-            startActivity(collectionPage)
-
-
-
-        }
 
 
         editButton.setOnClickListener {
