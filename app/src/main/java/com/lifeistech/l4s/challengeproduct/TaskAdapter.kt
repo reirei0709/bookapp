@@ -33,7 +33,7 @@ class TaskAdapter(
         holder.titleTextView.text = task.title
         holder.authorTextView.text = task.author
         holder.priceTextView.text = task.price
-        holder.timeTextView.text = task.createdAt.toString()
+        holder.timeTextView.text = task.timeAgo.toString()
 
         //holder.dateTextView.text =
             //SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.JAPANESE).format(task.createdAt)
