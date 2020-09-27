@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import io.realm.OrderedRealmCollection
 import io.realm.RealmRecyclerViewAdapter
 import kotlinx.android.synthetic.main.item_data_cell.view.*
+import java.util.*
 
 
 class TaskAdapter(
@@ -29,16 +30,20 @@ class TaskAdapter(
             listener.onItemClick(task)
         }
 
+
+
         //holder.imageView.setImageResource(task.imageId)
         holder.titleTextView.text = task.title
         holder.authorTextView.text = task.author
         holder.priceTextView.text = task.price
-        holder.timeTextView.text = task.timeAgo.toString()
+        holder.timeTextView.text = task.createdAt.toString()
 
         //holder.dateTextView.text =
             //SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.JAPANESE).format(task.createdAt)
 
     }
+
+
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): TaskViewHolder {
         val v = LayoutInflater.from(context).inflate(R.layout.item_data_cell, viewGroup, false)
