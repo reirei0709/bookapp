@@ -36,10 +36,6 @@ class CollectionActivity : AppCompatActivity() {
 
 
 
-
-
-
-
         val  DetailPage = Intent(this,DetailActivity::class.java)
 
         val adapter =

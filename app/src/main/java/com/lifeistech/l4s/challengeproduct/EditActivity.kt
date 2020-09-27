@@ -85,13 +85,22 @@ class EditActivity : AppCompatActivity,Parcelable {
 
         realm.executeTransaction {
 
-            val newMemo: Task = it.createObject(Task::class.java, UUID.randomUUID().toString())
-            newMemo.title = title
-            newMemo.author = author
-            newMemo.price = price
-            newMemo.content = content
+            if (memo != null) {
+                memo.title = title
+                memo.author = author
+                memo.price = price
+                memo.content = content
 
-            //newMemo.detail = detail
+            } else {
+
+                val newMemo: Task = it.createObject(Task::class.java, UUID.randomUUID().toString())
+                newMemo.title = title
+                newMemo.author = author
+                newMemo.price = price
+                newMemo.content = content
+
+                //newMemo.detail = detail
+            }
         }
 
 
