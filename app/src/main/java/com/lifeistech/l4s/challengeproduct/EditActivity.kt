@@ -29,11 +29,6 @@ class EditActivity : AppCompatActivity,Parcelable {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
 
-        val realmData = getRealmData()
-
-
-
-        Log.d("getkey", "Intent")
 
 
 

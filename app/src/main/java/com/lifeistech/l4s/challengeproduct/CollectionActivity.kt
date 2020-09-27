@@ -37,12 +37,7 @@ class CollectionActivity : AppCompatActivity() {
 
 
 
-         //タスクリストが空だったときに"あなたの読んだ本を…"を見えるように
-        if (taskList.isEmpty()) {
-            //createDummyData()
-            firstTextView.isVisible = true
 
-        }
 
         val  DetailPage = Intent(this,DetailActivity::class.java)
 
@@ -98,6 +93,16 @@ class CollectionActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         realm.close()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val taskList = readAll()
+
+        //タスクリストが空だったときに"あなたの読んだ本を…"を見えるように
+        firstTextView.isVisible = taskList.isEmpty()
+
     }
 
 //    fun createDummyData() {

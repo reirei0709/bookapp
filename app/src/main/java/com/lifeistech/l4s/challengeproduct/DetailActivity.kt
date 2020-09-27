@@ -53,7 +53,11 @@ class DetailActivity : AppCompatActivity() {
 
         editButton.setOnClickListener {
 
+            val id = intent.getStringExtra("id")
+
             val EditPage = Intent(this, EditActivity::class.java)
+
+            EditPage.putExtra(id, "dataid")
 
             startActivity(EditPage)
 
