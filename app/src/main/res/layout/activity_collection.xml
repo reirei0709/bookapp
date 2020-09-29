@@ -25,7 +25,7 @@
         app:backgroundTint="#FFCC00"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/icc_add" />
+        app:srcCompat="@drawable/ic_baseline_add_24"/>
 
     <TextView
         android:id="@+id/firstTextView"

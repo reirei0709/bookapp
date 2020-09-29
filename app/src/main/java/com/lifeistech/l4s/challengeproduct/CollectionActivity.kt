@@ -101,53 +101,25 @@ class CollectionActivity : AppCompatActivity() {
         firstTextView.isVisible = taskList.isEmpty()
 
 
-        val realmData = getRealmData()
-
-        var createdAt = realmData?.createdAt
-
-
-        var timeAgo:String = foo(createdAt!!.time)
-
-        timetextView?.text = timeAgo
-
-    }
-
-
-    fun foo(time: Long): String {
-        val diff = System.currentTimeMillis() - time
-
-        val sec = diff / 1000L
-
-        val min = sec / 60L
-        if (min == 0L) {
-            return "${sec}秒前"
-        }
-
-        val hour = min / 60L
-        if (hour == 0L) {
-            return "${min}分前"
-        }
-
-        val day = hour / 24L
-        if (day == 0L) {
-            return "${hour}時間前"
-        }
-
-        return "${day}日"
-    }
-
-
-    private fun getRealmData(): Task? {
-        // プライマリーキーをもとに該当のデータを取得
-        val id = intent.getStringExtra("id")
-        val target = realm.where(Task::class.java)
-            .equalTo("id", id)
-            .findFirst()
-
-        return target
 
 
     }
+
+
+
+
+
+//    private fun getRealmData(): Task? {
+//        // プライマリーキーをもとに該当のデータを取得
+//        val id = intent.getStringExtra("id")
+//        val target = realm.where(Task::class.java)
+//            .equalTo("id", id)
+//            .findFirst()
+//
+//        return target
+//
+//
+//    }
 
 
 //    fun createDummyData() {

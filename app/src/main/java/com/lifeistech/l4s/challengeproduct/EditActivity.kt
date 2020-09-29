@@ -24,11 +24,14 @@ import kotlinx.android.synthetic.main.activity_main.titleText
 import java.util.*
 
 class EditActivity : AppCompatActivity,Parcelable {
-    val realm = Realm.getDefaultInstance()
+    //val realm = Realm.getDefaultInstance()
+
+    private val realm: Realm by lazy {
+        Realm.getDefaultInstance()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
-
 
 
 
@@ -45,12 +48,17 @@ class EditActivity : AppCompatActivity,Parcelable {
 
             Log.d("changeButton","save")
 
+            val realmData = getRealmData()
+
+
+
             val DetailPage = Intent(this, DetailActivity::class.java)
 
             DetailPage.putExtra("title",title)
             DetailPage.putExtra("author",author)
             DetailPage.putExtra("price",price)
-            DetailPage.putExtra("content",title)
+            DetailPage.putExtra("content",content)
+            DetailPage.putExtra("id",realmData?.id)
 
 
             startActivity(DetailPage)
@@ -71,7 +79,6 @@ class EditActivity : AppCompatActivity,Parcelable {
 
     fun read(): Task? {
         return realm.where(Task::class.java).findFirst()
-
     }
 
     fun save(
@@ -135,8 +142,6 @@ class EditActivity : AppCompatActivity,Parcelable {
     fun onClick(dialog: android.content.DialogInterface?, which: kotlin.Int) {
         TODO("Not yet implemented")
     }
-
-
 
 
 

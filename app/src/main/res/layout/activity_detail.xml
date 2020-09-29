@@ -66,21 +66,5 @@
         android:hint="説明"
         android:inputType="textPersonName" />
 
-    <Button
-        android:id="@+id/editButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@drawable/ic_baseline_edit_24"
-        android:text="編集" />
-
-    <Button
-        android:id="@+id/deleteButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@drawable/ic_baseline_delete_24"
-        android:text="削除" />
-
 </LinearLayout>
 

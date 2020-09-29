@@ -40,14 +40,10 @@ class MainActivity : AppCompatActivity, Parcelable {
 
             Log.d("addButton","save")
 
-//            val DetailPage = Intent(this, DetailActivity::class.java)
-//
-//            DetailPage.putExtra("title",title)
-//            DetailPage.putExtra("author",author)
-//            DetailPage.putExtra("price",price)
-//            DetailPage.putExtra("content",content)
-//
-//            Log.d("putExtra","key")
+
+
+
+            Log.d("putExtra","key")
 
             finish()
         }

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"/>
+
+    <ImageView
+        android:id="@+id/ImageView"
+        android:layout_width="190dp"
+        android:layout_height="219dp"
+        android:layout_weight="2"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="タイトル"
+        android:inputType="textPersonName" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/authorText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="著者名"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/priceText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="金額"
+            android:inputType="textPersonName" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/contentText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="7"
+        android:ems="10"
+        android:hint="説明"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/editButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/ic_baseline_edit_24"
+        android:text="編集" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/ic_baseline_delete_24"
+        android:text="削除" />
+
+</LinearLayout>
+

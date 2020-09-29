@@ -1,6 +1,7 @@
 package com.lifeistech.l4s.challengeproduct
 
 import android.content.Context
+import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,7 +36,7 @@ class TaskAdapter(
         //holder.imageView.setImageResource(task.imageId)
         holder.titleTextView.text = task.title
         holder.authorTextView.text = task.author
-        holder.priceTextView.text = task.price
+        //holder.priceTextView.text = task.price
         holder.timeTextView.text = task.createdAt.toString()
 
         //holder.dateTextView.text =
@@ -55,8 +56,22 @@ class TaskAdapter(
         val container:ConstraintLayout = view.container
         val titleTextView: TextView = view.titletextView
         val authorTextView: TextView = view.authortextView
-        val priceTextView:TextView = view.pricetextView
+        //val priceTextView:TextView = view.pricetextView
         val timeTextView:TextView = view.timetextView
+
+        fun bind(book: Task, listener: OnItemClickListener) {
+            titleTextView.text = book.title
+            authorTextView.text = book.author
+            timeTextView.text = DateUtils.getRelativeTimeSpanString(
+                book.createdAt.time,
+                System.currentTimeMillis(),
+                DateUtils.MINUTE_IN_MILLIS
+            ).toString()
+            container.setOnClickListener {
+                listener.onItemClick(book)
+            }
+        }
+
     }
     interface OnItemClickListener {
         fun onItemClick(item: Task)
