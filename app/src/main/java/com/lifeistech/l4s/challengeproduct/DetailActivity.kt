@@ -61,10 +61,11 @@ class DetailActivity : AppCompatActivity() {
         Log.d("getkey", "Intent")
 
 
-        titleText.text = realmData?.title
-        authorText.text = realmData?.author
-        priceText.text = realmData?.price
-        contentText.text = realmData?.content
+//        titleText.text = realmData?.title
+//        authorText.text = realmData?.author
+//        priceText.text = realmData?.price
+//        contentText.text = realmData?.content
+//        imageView.url = realmData?.imageView
 
         Log.d("setText", "setText")
 
@@ -96,6 +97,7 @@ class DetailActivity : AppCompatActivity() {
 
 
     fun updateText() {
+
         titleText.text = task?.title
         authorText.text = task?.author
         priceText.text = "¥ ${task?.price}"

@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/ImageView"
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="219dp"
         android:layout_weight="2"

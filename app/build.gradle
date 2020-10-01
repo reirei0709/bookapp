@@ -47,6 +47,7 @@ dependencies {
 
     implementation 'io.realm:android-adapters:3.1.0'
     implementation 'com.google.android.material:material:1.1.0-alpha06'
+    implementation 'io.coil-kt:coil:0.9.5'
 
 
 

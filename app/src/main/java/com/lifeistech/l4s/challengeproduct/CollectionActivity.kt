@@ -56,9 +56,7 @@ class CollectionActivity : AppCompatActivity() {
                     startActivity(DetailPage)
 
 
-                    //削除
-                    //Toast.makeText(applicationContext, item.content + "を削除しました", Toast.LENGTH_SHORT).show()
-                    //delete(item.id)
+
                 }
             }, true)
 
@@ -128,34 +126,7 @@ class CollectionActivity : AppCompatActivity() {
 //        }
 //    }
 
-    fun create(title:String,author:String,price:String,content: String) {
-        realm.executeTransaction {
-            val task = it.createObject(Task::class.java, UUID.randomUUID().toString())
-            task.title = title
-            task.author = author
-            task.price = price
-            task.content = content
-        }
-    }
 
-
-
-//    fun update( title:String,author:String,price:String,content: String) {
-//        realm.executeTransaction {
-//            val task = realm.where(Task::class.java).equalTo("id", "0").findFirst()
-//                ?: return@executeTransaction
-//            task.title = title
-//            task.author = author
-//            task.price = price
-//            task.content = content
-//        }
-//    }
-
-    fun update(task: Task, content: String) {
-        realm.executeTransaction {
-            task.content = content
-        }
-    }
 
     fun delete(id: String) {
         realm.executeTransaction {
